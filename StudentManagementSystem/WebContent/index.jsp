@@ -9,6 +9,28 @@
 <body>
 <h2>Student Management System</h2>
 <h3>Login</h3>
+<%
+if(session.getAttribute("msg") !=null ){
+	%>
+	<span style="color:red">
+	<%= session.getAttribute("msg") %>
+	</span>
+	<% 
+	session.removeAttribute("msg");
+	}
+
+%>
+<%
+if(request.getAttribute("msg") !=null ){
+	%>
+	<span style="color:Orange">
+	<%= session.getAttribute("msg") %>
+	</span>
+	<% 
+	session.removeAttribute("msg");
+	}
+
+%>
 <form action="login" method="post">
  Username:<input type="text" name="username"><br><br>
  Password:<input type="text" name="password"><br><br>
