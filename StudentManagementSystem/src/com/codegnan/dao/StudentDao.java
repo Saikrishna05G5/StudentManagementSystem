@@ -11,12 +11,13 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
-import com.codegnan.bean.Student;
+import com.codegnan.IStudentDao;
+import com.codegnan.Student;
 import com.codegnan.exception.DatabaseInternalException;
 import com.codegnan.exception.InvalidStudentIdException;
 import com.codegnan.helper.ConnectionManager;
 
-public class StudentDao extends Dao {
+public class StudentDao extends Dao implements IStudentDao, IStudentDao {
 	Logger log = Logger.getLogger(StudentDao.class);
 	
 	public StudentDao() throws SQLException, ClassNotFoundException {
@@ -24,6 +25,13 @@ public class StudentDao extends Dao {
 	}
 	
 	// find a single record by the ID
+	/* (non-Javadoc)
+	 * @see com.codegnan.dao.IStudentDao#findById(int)
+	 */
+	/* (non-Javadoc)
+	 * @see com.codegnan.dao.IStudentDao#findById(int)
+	 */
+	@Override
 	public Student findById(int id) throws ClassNotFoundException, InvalidStudentIdException, DatabaseInternalException {
 		log.debug("finding a student with id : "+id);
 		Scanner sc = new Scanner(System.in);
@@ -63,6 +71,13 @@ public class StudentDao extends Dao {
 		return student;
 	}
 	// find All students
+	/* (non-Javadoc)
+	 * @see com.codegnan.dao.IStudentDao#findAll()
+	 */
+	/* (non-Javadoc)
+	 * @see com.codegnan.dao.IStudentDao#findAll()
+	 */
+	@Override
 	public List<Student> findAll() throws ClassNotFoundException, DatabaseInternalException {
 		log.debug("finding all students");
 		ArrayList<Student> students = new ArrayList<>();
@@ -99,6 +114,13 @@ public class StudentDao extends Dao {
 		return students;
 	}
 	// save
+	/* (non-Javadoc)
+	 * @see com.codegnan.dao.IStudentDao#save(com.codegnan.bean.Student)
+	 */
+	/* (non-Javadoc)
+	 * @see com.codegnan.dao.IStudentDao#save(com.codegnan.bean.Student)
+	 */
+	@Override
 	public boolean save(Student student) throws DatabaseInternalException {
 		log.debug("Saving student : "+student);
 		boolean res = false;
@@ -120,6 +142,13 @@ public class StudentDao extends Dao {
 		return res;
 	}
 	// edit
+	/* (non-Javadoc)
+	 * @see com.codegnan.dao.IStudentDao#edit(com.codegnan.bean.Student)
+	 */
+	/* (non-Javadoc)
+	 * @see com.codegnan.dao.IStudentDao#edit(com.codegnan.bean.Student)
+	 */
+	@Override
 	public boolean edit(Student student) throws DatabaseInternalException {
 		log.debug("Editing student : "+student);
 		boolean res = false;
@@ -141,6 +170,13 @@ public class StudentDao extends Dao {
 		return res;
 	}
 	// delete
+	/* (non-Javadoc)
+	 * @see com.codegnan.dao.IStudentDao#delete(int)
+	 */
+	/* (non-Javadoc)
+	 * @see com.codegnan.dao.IStudentDao#delete(int)
+	 */
+	@Override
 	public boolean delete(int id) throws DatabaseInternalException {
 		log.debug("Deleting student with id : "+id);
 		boolean res = false;

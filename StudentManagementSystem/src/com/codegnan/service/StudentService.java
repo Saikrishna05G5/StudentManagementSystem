@@ -12,59 +12,56 @@ import com.codegnan.exception.InvalidStudentIdException;
 
 public class StudentService {
 	Logger logger = Logger.getLogger(StudentService.class);
-	public Student findStudentByID(int id) throws ClassNotFoundException,SQLException,InvalidStudentIdException,DatabaseInternalException {
-		logger.debug("Finding Student By id:"+id);
+
+	public Student findStudentById(int id) throws ClassNotFoundException, SQLException, InvalidStudentIdException, DatabaseInternalException {
+		logger.debug("finding a student by id : "+id);
 		StudentDao studentDao = new StudentDao();
-		Student student =studentDao.findById(id);
-		logger.debug("Student Found With Given Id:"+id);
+		Student student = studentDao.findById(id);
+		logger.debug("Student found with the given id "+id);
 		return student;
 	}
 	public List<Student> findAllStudents() throws ClassNotFoundException, SQLException, DatabaseInternalException{
-		logger.debug("Finding all Students Existing");
+		logger.debug("finding all students existing");
 		StudentDao studentDao = new StudentDao();
-		List<Student> students=studentDao.findAll();
-		logger.debug("Found"+students.size()+" and Returning");
+		List<Student> students = studentDao.findAll();
+		logger.debug("found "+students.size()+" and returning");
 		return students;
 	}
 	public boolean saveStudent(Student student) throws ClassNotFoundException, SQLException, DatabaseInternalException {
-		logger.debug("Saving a Student "+student);
+		logger.debug("Saving a student "+student);
 		StudentDao studentDao = new StudentDao();
 		boolean result = studentDao.save(student);
 		if(result) {
 			studentDao.commit();
-			logger.debug("Saved Student Successfully With ID : "+student.getId());
+			logger.debug("Saved student successfully with id : "+student.getId());
 			return true;
 		}
 		else {
 			studentDao.rollback();
-			logger.debug("Failed to add student id : "+student.getId());
+			logger.debug("Failed to save a student with id : "+student.getId());
 			return false;
 		}
-		
 	}
 	public boolean editStudent(Student student) throws ClassNotFoundException, SQLException, DatabaseInternalException {
-		logger.debug("Editing a Student "+student);
+		logger.debug("Editing a student "+student);
 		StudentDao studentDao = new StudentDao();
 		boolean result = studentDao.edit(student);
 		if(result) {
 			studentDao.commit();
-			logger.debug("Saved Student Successfully With ID : "+student.getId());
+			logger.debug("Saved student successfully with id : "+student.getId());
 			return true;
 		}
 		else {
 			studentDao.rollback();
-			logger.debug("Failed to add student id : "+student.getId());
+			logger.debug("Failed to save a student with id : "+student.getId());
 			return false;
 		}
-		
 	}
 	public boolean deleteStudentById(int id) throws ClassNotFoundException, SQLException, DatabaseInternalException {
-		logger.debug("Deleting Student With ID :"+id);
+		logger.debug("Deleting student with id : "+id);
 		StudentDao studentDao = new StudentDao();
-		boolean res =studentDao.delete(id);
-		logger.debug("Failed to add with student id :"+id);
+		boolean res = studentDao.delete(id);
+		logger.debug("student deleted successfully with the id : "+id);
 		return res;
-		
 	}
-	
 }

@@ -19,4 +19,14 @@
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>StudentRegistration</display-name>
+    <servlet-name>StudentRegistration</servlet-name>
+    <servlet-class>com.codegnan.web.StudentRegistration</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StudentRegistration</servlet-name>
+    <url-pattern>/stuReg</url-pattern>
+  </servlet-mapping>
 </web-app>
